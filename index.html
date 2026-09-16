@@ -8,7 +8,7 @@
 <title>Yağız & Sinem ❤️</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&family=Allura&display=swap');
 
 *{
     box-sizing:border-box;
@@ -58,6 +58,7 @@ body::before{
 
     z-index:1;
 }
+
 
 /* =========================================
    YILDIZLAR
@@ -111,6 +112,7 @@ body::before{
         opacity:0;
     }
 }
+
 
 /* =========================================
    MARKA
@@ -200,6 +202,7 @@ body::before{
     }
 }
 
+
 /* =========================================
    ANA ALAN
 ========================================= */
@@ -228,6 +231,7 @@ main{
     align-items:center;
 }
 
+
 /* =========================================
    GERÇEK YAZI KALBİ
 ========================================= */
@@ -252,10 +256,9 @@ main{
         cubic-bezier(.4,0,.2,1);
 }
 
-/*
-   BURADA KALP ŞEKLİ YOK.
 
-   Sadece yazılar var.
+/*
+   KALP SADECE YAZILARDAN OLUŞUYOR.
 */
 
 .text-heart{
@@ -270,7 +273,8 @@ main{
     z-index:5;
 }
 
-/* Kalbin arkasında sadece ışık */
+
+/* Kalbin arkasındaki ışık */
 
 .heart-glow{
 
@@ -297,7 +301,10 @@ main{
     pointer-events:none;
 }
 
-/* HER KELİME */
+
+/* =========================================
+   KALBİ OLUŞTURAN KELİMELER
+========================================= */
 
 .heart-word{
 
@@ -319,10 +326,10 @@ main{
     line-height:1;
 
     text-shadow:
-        0 0 5px white,
-        0 0 10px rgba(255,180,240,.95),
-        0 0 20px rgba(255,70,185,.9),
-        0 0 35px rgba(255,50,170,.55);
+        0 0 4px white,
+        0 0 9px rgba(255,180,240,.95),
+        0 0 17px rgba(255,70,185,.9),
+        0 0 28px rgba(255,50,170,.5);
 
     transition:
         opacity .4s ease,
@@ -330,6 +337,7 @@ main{
 
     user-select:none;
 }
+
 
 /* =========================================
    ORTADAKİ SİNEM
@@ -347,30 +355,55 @@ main{
     transform:
         translate(-50%,-50%);
 
+    /*
+       Ortadaki Sinem diğer kelimelerden
+       tamamen farklı ve daha zarif.
+    */
+
     font-family:
+        'Allura',
         'Cormorant Garamond',
-        serif;
+        cursive;
 
     font-size:
-        clamp(50px,9vw,88px);
+        clamp(70px,13vw,118px);
 
-    font-weight:600;
+    font-weight:400;
 
-    letter-spacing:5px;
+    letter-spacing:2px;
 
     color:white;
 
+    white-space:nowrap;
+
     text-shadow:
         0 0 7px white,
-        0 0 18px white,
-        0 0 35px #ff9ddd,
-        0 0 65px #ff4eaa;
+        0 0 15px white,
+        0 0 30px #ffb0e5,
+        0 0 50px #ff72c5,
+        0 0 80px #ff4eaa;
 
     pointer-events:none;
 
     transition:
         transform .12s ease;
+
+    animation:centerGlow 2.2s
+        ease-in-out
+        infinite alternate;
 }
+
+@keyframes centerGlow{
+
+    from{
+        filter:brightness(1);
+    }
+
+    to{
+        filter:brightness(1.18);
+    }
+}
+
 
 /* =========================================
    KALP ATIŞI
@@ -398,6 +431,7 @@ main{
         transform:scale(1);
     }
 }
+
 
 /* =========================================
    MESAJ KUTUSU
@@ -458,6 +492,7 @@ main{
         transform .5s ease;
 }
 
+
 /* =========================================
    SADECE SİNEM
 ========================================= */
@@ -499,6 +534,7 @@ main{
         opacity:1;
     }
 }
+
 
 /* =========================================
    ECG
@@ -582,6 +618,7 @@ main{
     }
 }
 
+
 /* =========================================
    MÜZİK
 ========================================= */
@@ -630,6 +667,7 @@ main{
     background:
         rgba(255,255,255,.17);
 }
+
 
 /* =========================================
    AÇILIŞ
@@ -787,6 +825,7 @@ main{
     transform:translateY(-2px);
 }
 
+
 /* =========================================
    MOBİL
 ========================================= */
@@ -853,16 +892,18 @@ main{
     .heart-word{
 
         text-shadow:
-            0 0 4px white,
-            0 0 9px #ff9ddd,
-            0 0 17px #ff4eaa;
+            0 0 3px white,
+            0 0 7px #ff9ddd,
+            0 0 14px #ff4eaa;
     }
 
     .center-name{
 
-        font-size:48px;
+        top:53%;
 
-        letter-spacing:3px;
+        font-size:58px;
+
+        letter-spacing:1px;
     }
 
     .distance-box{
@@ -892,10 +933,13 @@ main{
         top:-18px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================================
      YILDIZLAR
@@ -929,7 +973,8 @@ main{
 <audio
     id="music"
     loop
-    preload="auto">
+    preload="auto"
+    autoplay>
 
     <source
         src="music.mp3"
@@ -1102,6 +1147,7 @@ main{
 
 <script>
 
+
 /* =====================================================
    YILDIZLAR
 ===================================================== */
@@ -1156,6 +1202,7 @@ const startButton =
 
 let musicPlaying = false;
 
+
 function startMusic(){
 
     music.volume = .45;
@@ -1175,6 +1222,31 @@ function startMusic(){
         });
 }
 
+
+/*
+    Sayfa açılır açılmaz müzik başlatmayı deniyoruz.
+    Mobil tarayıcı engellerse "Kalbimize Gir"
+    butonuna basıldığında kesin şekilde
+    tekrar deneniyor.
+*/
+
+window.addEventListener(
+    "load",
+    () => {
+
+        setTimeout(
+            () => {
+
+                startMusic();
+
+            },
+            300
+        );
+
+    }
+);
+
+
 startButton.addEventListener(
     "click",
     () => {
@@ -1187,6 +1259,7 @@ startButton.addEventListener(
 
     }
 );
+
 
 musicButton.addEventListener(
     "click",
@@ -1218,18 +1291,20 @@ musicButton.addEventListener(
 const textHeart =
     document.getElementById("textHeart");
 
+
 const heartWords = [
 
     "Yağız",
     "Sinem",
     "Aşkım",
-    "I Love You"
+    "I Love You",
+    "Seni Seviyorum"
 
 ];
 
 
 /*
-    Matematiksel kalp denklemi:
+    Matematiksel kalp:
 
     x = 16 sin³(t)
 
@@ -1239,8 +1314,8 @@ const heartWords = [
     - 2cos(3t)
     - cos(4t)
 
-    Bu sayede kelimeler gerçek
-    kalp koordinatlarına yerleşiyor.
+    Kelimeler bu koordinatlara
+    yerleştiriliyor.
 */
 
 
@@ -1302,14 +1377,16 @@ function createHeartLayer(
 
 
         /*
-            Hafif rastgele boyut
-            sayesinde daha doğal
-            tipografik görünüm.
+            YAZILAR BURADA ÖNCEKİNE
+            GÖRE DAHA KÜÇÜK.
+
+            Böylece ortadaki Sinem
+            daha rahat okunuyor.
         */
 
         const size =
             sizeBase +
-            ((i * 7) % 6);
+            ((i * 7) % 4);
 
 
         word.style.fontSize =
@@ -1323,52 +1400,112 @@ function createHeartLayer(
 
 
         /*
-            Her kelime farklı parlaklıkta.
+            Hafif farklı parlaklık.
         */
 
         word.style.opacity =
-            .78 +
+            .72 +
             ((i % 4) * .05);
 
 
         textHeart.appendChild(word);
+
     }
+
 }
 
 
 /*
-    4 farklı kalp katmanı.
+    4 katman korunuyor.
 
-    Böylece sadece dış çizgi değil,
-    kalbin içi de yazılarla oluşuyor.
+    Sadece yazılar küçültüldü.
 */
 
 createHeartLayer(
     1.00,
     58,
-    15,
+    11,
     0
 );
 
 createHeartLayer(
     .82,
     48,
-    14,
+    10,
     1
 );
 
 createHeartLayer(
     .64,
     38,
-    13,
+    10,
     2
 );
 
 createHeartLayer(
     .45,
     28,
-    12,
+    9,
     3
+);
+
+
+/* =====================================================
+   ORTA BÖLGEYİ TEMİZ TUT
+===================================================== */
+
+/*
+    Merkezdeki Sinem'in daha rahat görünmesi
+    için kalbin içindeki kelimeleri hafifçe
+    geri plana alıyoruz.
+
+    Kalbin dış şekli değişmiyor.
+*/
+
+const allHeartWords =
+    document.querySelectorAll(
+        ".heart-word"
+    );
+
+allHeartWords.forEach(
+    word => {
+
+        const top =
+            parseFloat(
+                word.style.top
+            );
+
+        const left =
+            parseFloat(
+                word.style.left
+            );
+
+        /*
+            Merkeze çok yaklaşan kelimeler
+            biraz daha küçük ve soluk.
+        */
+
+        const centerDistance =
+            Math.sqrt(
+                Math.pow(left - 50, 2) +
+                Math.pow(top - 53, 2)
+            );
+
+        if(centerDistance < 18){
+
+            word.style.opacity = ".35";
+
+            word.style.fontSize =
+                Math.max(
+                    7,
+                    parseFloat(
+                        word.style.fontSize
+                    ) - 2
+                ) + "px";
+
+        }
+
+    }
 );
 
 
@@ -1378,6 +1515,7 @@ createHeartLayer(
 
 let wordChangeIndex = 0;
 
+
 function changeHeartWords(){
 
     const allWords =
@@ -1385,15 +1523,18 @@ function changeHeartWords(){
             ".heart-word"
         );
 
+
     allWords.forEach(
         (word,index) => {
 
             if(index % 3 === 0){
 
-                word.style.opacity = ".2";
+                word.style.opacity =
+                    ".15";
 
                 word.style.transform =
-                    "translate(-50%,-50%) scale(.8)";
+                    "translate(-50%,-50%) scale(.82)";
+
 
                 setTimeout(
                     () => {
@@ -1408,8 +1549,14 @@ function changeHeartWords(){
                                 heartWords.length
                             ];
 
+
+                        /*
+                            Kelimeler geri gelirken
+                            küçükten büyüğe çıkıyor.
+                        */
+
                         word.style.opacity =
-                            ".9";
+                            ".82";
 
                         word.style.transform =
                             "translate(-50%,-50%) scale(1)";
@@ -1423,9 +1570,11 @@ function changeHeartWords(){
         }
     );
 
+
     wordChangeIndex++;
 
 }
+
 
 setInterval(
     changeHeartWords,
@@ -1442,10 +1591,12 @@ const centerName =
         ".center-name"
     );
 
+
 function centerBeat(){
 
     centerName.style.transform =
         "translate(-50%,-50%) scale(1.13)";
+
 
     setTimeout(
         () => {
@@ -1458,6 +1609,7 @@ function centerBeat(){
     );
 
 }
+
 
 setInterval(
     centerBeat,
@@ -1491,19 +1643,24 @@ const messages = [
 
 ];
 
+
 const distanceText =
     document.getElementById(
         "distanceText"
     );
 
+
 let messageIndex = 0;
+
 
 function changeMessage(){
 
-    distanceText.style.opacity = "0";
+    distanceText.style.opacity =
+        "0";
 
     distanceText.style.transform =
         "translateY(8px)";
+
 
     setTimeout(
         () => {
@@ -1515,10 +1672,12 @@ function changeMessage(){
                 %
                 messages.length;
 
+
             distanceText.textContent =
                 messages[
                     messageIndex
                 ];
+
 
             distanceText.style.opacity =
                 "1";
@@ -1529,7 +1688,9 @@ function changeMessage(){
         },
         500
     );
+
 }
+
 
 setInterval(
     changeMessage,
