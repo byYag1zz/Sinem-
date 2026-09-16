@@ -4,26 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yağız & Sinem ❤️</title>
+
 <style>
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
+
 html,body{
   width:100%;
   min-height:100%;
   overflow-x:hidden;
 }
+
 body{
   font-family:Arial,Helvetica,sans-serif;
   color:white;
   background:
-    radial-gradient(circle at 50% 35%,rgba(255,80,190,.25),transparent 35%),
-    linear-gradient(135deg,#16001f,#420044,#16001f);
+    radial-gradient(circle at 50% 30%,rgba(255,70,200,.28),transparent 38%),
+    linear-gradient(135deg,#16001f,#450047,#18001f);
   min-height:100vh;
 }
-/* Yıldızlar */
+
+/* =========================
+   YILDIZLAR
+========================= */
+
 #stars{
   position:fixed;
   inset:0;
@@ -31,6 +38,7 @@ body{
   pointer-events:none;
   z-index:0;
 }
+
 .star{
   position:absolute;
   bottom:-20px;
@@ -38,45 +46,73 @@ body{
   height:3px;
   border-radius:50%;
   background:white;
-  box-shadow:0 0 10px white,0 0 20px #ff9de9;
+  box-shadow:
+    0 0 10px white,
+    0 0 20px #ff9de9;
   animation:rise linear infinite;
   opacity:0;
 }
+
 @keyframes rise{
   0%{
     transform:translateY(0) scale(.5);
     opacity:0;
   }
-  15%{opacity:.8;}
-  80%{opacity:.7;}
+
+  15%{
+    opacity:.8;
+  }
+
+  80%{
+    opacity:.7;
+  }
+
   100%{
     transform:translateY(-110vh) scale(1.2);
     opacity:0;
   }
 }
-/* Üst başlık */
+
+/* =========================
+   ÜST
+========================= */
+
 .top{
   position:relative;
-  z-index:5;
+  z-index:10;
   padding:25px 20px 0;
   text-align:left;
   font-size:17px;
   font-weight:600;
   letter-spacing:.4px;
 }
+
 .top-heart{
   display:inline-block;
   animation:miniBeat 1s infinite;
   margin-right:7px;
-  color:#fff;
+  color:white;
   text-shadow:0 0 12px #ff8ce7;
 }
+
 @keyframes miniBeat{
-  0%,100%{transform:scale(1);}
-  15%{transform:scale(1.25);}
-  30%{transform:scale(1);}
+  0%,100%{
+    transform:scale(1);
+  }
+
+  15%{
+    transform:scale(1.25);
+  }
+
+  30%{
+    transform:scale(1);
+  }
 }
-/* Ana alan */
+
+/* =========================
+   ANA
+========================= */
+
 .main{
   position:relative;
   z-index:2;
@@ -86,486 +122,880 @@ body{
   align-items:center;
   padding-top:8px;
 }
+
 .subtitle{
   font-size:12px;
   opacity:.7;
   margin-top:2px;
   letter-spacing:2px;
 }
-/* YAZI KALBİ */
-.heart-wrap{
+
+/* =====================================================
+   YENİ YAZI KALBİ
+   BURADA ARTIK HİÇBİR MATEMATİKSEL KALP YOK
+===================================================== */
+
+.heart-area{
   position:relative;
-  width:min(94vw,600px);
-  height:450px;
-  margin-top:8px;
+  width:min(96vw,620px);
+  height:455px;
+  margin-top:5px;
+
   display:flex;
   justify-content:center;
   align-items:center;
-  animation:heartBeat 1.25s infinite ease-in-out;
+
+  animation:heartWholeBeat 1.25s infinite ease-in-out;
 }
-@keyframes heartBeat{
-  0%,100%{transform:scale(1);}
-  12%{transform:scale(1.035);}
-  24%{transform:scale(1);}
-  36%{transform:scale(1.025);}
-  48%{transform:scale(1);}
+
+@keyframes heartWholeBeat{
+
+  0%,100%{
+    transform:scale(1);
+  }
+
+  12%{
+    transform:scale(1.035);
+  }
+
+  24%{
+    transform:scale(1);
+  }
+
+  36%{
+    transform:scale(1.025);
+  }
+
+  48%{
+    transform:scale(1);
+  }
 }
-/*
-  Canvas'ın içinde SADECE YAZILAR var.
-  CSS ile kalp çizilmiyor.
-*/
-#heartCanvas{
+
+/* Yazı kalbinin tamamı */
+
+.word-heart{
   width:100%;
-  height:100%;
-  display:block;
+  height:390px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  gap:3px;
+
+  user-select:none;
 }
-/* Ortadaki Sinem */
+
+/* Her satır */
+
+.heart-row{
+  height:27px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  white-space:nowrap;
+
+  transform-origin:center;
+
+  animation:
+    rowFloat 2.5s ease-in-out infinite;
+}
+
+/* Kelimeler */
+
+.heart-word{
+  display:inline-block;
+
+  margin:0 4px;
+
+  font-size:clamp(9px,2.5vw,15px);
+
+  font-weight:700;
+
+  color:white;
+
+  opacity:.82;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 12px #ff62d5,
+    0 0 20px #ff20c3;
+
+  animation:
+    wordPulse 1.25s infinite ease-in-out;
+}
+
+/* Daha büyük kelimeler */
+
+.heart-word.big{
+  font-size:clamp(11px,3vw,18px);
+}
+
+/* Kenardaki kelimeler */
+
+.heart-word.dim{
+  opacity:.58;
+}
+
+@keyframes rowFloat{
+
+  0%,100%{
+    transform:translateX(0);
+  }
+
+  50%{
+    transform:translateX(3px);
+  }
+}
+
+@keyframes wordPulse{
+
+  0%,100%{
+    transform:scale(1);
+    opacity:.72;
+  }
+
+  12%{
+    transform:scale(1.12);
+    opacity:1;
+  }
+
+  24%{
+    transform:scale(1);
+    opacity:.78;
+  }
+
+  36%{
+    transform:scale(1.08);
+    opacity:.95;
+  }
+
+  48%{
+    transform:scale(1);
+    opacity:.75;
+  }
+}
+
+/* =====================================================
+   ORTADAKİ SINEM
+===================================================== */
+
 .center-name{
   position:absolute;
+
   left:50%;
   top:50%;
+
   transform:translate(-50%,-50%);
-  font-size:clamp(42px,13vw,76px);
+
+  font-size:clamp(48px,15vw,86px);
+
   font-weight:900;
+
   letter-spacing:2px;
+
   color:white;
+
+  z-index:20;
+
+  pointer-events:none;
+
   text-shadow:
     0 0 8px white,
     0 0 18px #ff72db,
     0 0 35px #ff31c7,
-    0 0 60px #ff31c7;
-  z-index:10;
+    0 0 65px #ff31c7;
+
   animation:centerBeat 1.25s infinite ease-in-out;
-  pointer-events:none;
 }
+
 @keyframes centerBeat{
+
   0%,100%{
     transform:translate(-50%,-50%) scale(1);
   }
+
   12%{
-    transform:translate(-50%,-50%) scale(1.08);
+    transform:translate(-50%,-50%) scale(1.09);
   }
+
   24%{
     transform:translate(-50%,-50%) scale(1);
   }
+
   36%{
-    transform:translate(-50%,-50%) scale(1.05);
+    transform:translate(-50%,-50%) scale(1.06);
   }
+
   48%{
     transform:translate(-50%,-50%) scale(1);
   }
 }
-/* Mesaj kutusu */
+
+/* =========================
+   MESAJ
+========================= */
+
 .message-box{
   width:min(88%,560px);
+
   min-height:125px;
-  padding:22px 22px;
-  margin-top:-2px;
+
+  padding:22px;
+
+  margin-top:-5px;
+
   border:1px solid rgba(255,255,255,.2);
+
   border-radius:24px;
+
   background:rgba(255,255,255,.08);
+
   backdrop-filter:blur(14px);
   -webkit-backdrop-filter:blur(14px);
+
   box-shadow:
     0 15px 50px rgba(0,0,0,.25),
     inset 0 0 30px rgba(255,255,255,.04);
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   text-align:center;
 }
+
 #message{
   font-size:15px;
+
   line-height:1.65;
+
   color:rgba(255,255,255,.94);
+
   transition:opacity .5s ease;
 }
-/* Alt yazı */
+
+/* =========================
+   ALT YAZI
+========================= */
+
 .special{
   margin-top:18px;
+
   font-size:15px;
+
   font-weight:700;
+
   color:white;
+
   text-shadow:
     0 0 8px white,
     0 0 18px #ff8de5,
     0 0 30px #ff39c9;
+
   animation:glow 2s infinite alternate;
 }
+
 @keyframes glow{
-  from{opacity:.75;}
-  to{opacity:1;}
+
+  from{
+    opacity:.75;
+  }
+
+  to{
+    opacity:1;
+  }
 }
-/* ECG */
+
+/* =========================
+   ECG
+========================= */
+
 .ecg-wrap{
   width:min(90%,620px);
+
   height:80px;
+
   margin-top:8px;
+
   overflow:hidden;
+
   opacity:.9;
 }
+
 #ecg{
   width:100%;
   height:100%;
 }
-/* Müzik */
+
+/* =========================
+   MÜZİK
+========================= */
+
 .music-btn{
   position:fixed;
+
   right:18px;
   bottom:18px;
+
   z-index:30;
+
   width:45px;
   height:45px;
+
   border:none;
+
   border-radius:50%;
+
   background:rgba(255,255,255,.12);
+
   color:white;
+
   font-size:19px;
+
   backdrop-filter:blur(10px);
-  box-shadow:0 0 20px rgba(255,70,210,.35);
+
+  box-shadow:
+    0 0 20px rgba(255,70,210,.35);
 }
-/* Mobil */
+
+/* =========================
+   MOBİL
+========================= */
+
 @media(max-width:500px){
-  .heart-wrap{
-    height:390px;
+
+  .heart-area{
+    height:420px;
   }
+
+  .word-heart{
+    height:360px;
+
+    gap:1px;
+  }
+
+  .heart-row{
+    height:25px;
+  }
+
+  .heart-word{
+    margin:0 2.5px;
+    font-size:9px;
+  }
+
+  .heart-word.big{
+    font-size:11px;
+  }
+
   .message-box{
     margin-top:0;
   }
+
   #message{
     font-size:14px;
   }
 }
 </style>
 </head>
+
 <body>
+
 <div id="stars"></div>
+
 <div class="top">
   <span class="top-heart">♥</span>
   Yağız & Sinem
 </div>
+
 <div class="main">
-  <div class="subtitle">BİZİM HİKAYEMİZ</div>
-  <!-- KALP TAMAMEN YAZILARDAN -->
-  <div class="heart-wrap">
-    <canvas id="heartCanvas"></canvas>
-    <!-- Ortadaki ayrı Sinem -->
-    <div class="center-name">Sinem</div>
+
+  <div class="subtitle">
+    BİZİM HİKAYEMİZ
   </div>
+
+  <!-- =================================================
+       KALP TAMAMEN SATIRLARDAKİ YAZILARDAN OLUŞUYOR
+  ================================================== -->
+
+  <div class="heart-area">
+
+    <div class="word-heart">
+
+      <!-- 1 -->
+      <div class="heart-row">
+        <span class="heart-word dim">Yağız</span>
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word dim">Yağız</span>
+      </div>
+
+      <!-- 2 -->
+      <div class="heart-row">
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word big">I Love You</span>
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word big">I Love You</span>
+        <span class="heart-word">Aşkım</span>
+      </div>
+
+      <!-- 3 -->
+      <div class="heart-row">
+        <span class="heart-word">Yağız</span>
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word big">Aşkım</span>
+        <span class="heart-word">Seni Seviyorum</span>
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word">Yağız</span>
+      </div>
+
+      <!-- 4 -->
+      <div class="heart-row">
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word">I Love You</span>
+
+        <span style="width:150px"></span>
+
+        <span class="heart-word">I Love You</span>
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word">Sinem</span>
+      </div>
+
+      <!-- 5 -->
+      <div class="heart-row">
+        <span class="heart-word">Yağız</span>
+        <span class="heart-word big">Sinem</span>
+        <span class="heart-word">Aşkım</span>
+
+        <span style="width:175px"></span>
+
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word big">Sinem</span>
+        <span class="heart-word">Yağız</span>
+      </div>
+
+      <!-- 6 -->
+      <div class="heart-row">
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word">Seni Seviyorum</span>
+        <span class="heart-word">Yağız</span>
+
+        <span style="width:120px"></span>
+
+        <span class="heart-word">Yağız</span>
+        <span class="heart-word">Seni Seviyorum</span>
+        <span class="heart-word">Aşkım</span>
+      </div>
+
+      <!-- 7 -->
+      <div class="heart-row">
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word">I Love You</span>
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word">Yağız</span>
+        <span class="heart-word">Sinem</span>
+      </div>
+
+      <!-- 8 -->
+      <div class="heart-row">
+        <span class="heart-word">Yağız</span>
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word big">Aşkım</span>
+        <span class="heart-word">Seni Seviyorum</span>
+        <span class="heart-word">Yağız</span>
+      </div>
+
+      <!-- 9 -->
+      <div class="heart-row">
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word">Aşkım</span>
+        <span class="heart-word">I Love You</span>
+        <span class="heart-word">Sinem</span>
+      </div>
+
+      <!-- 10 -->
+      <div class="heart-row">
+        <span class="heart-word">Yağız</span>
+        <span class="heart-word big">Seni Seviyorum</span>
+        <span class="heart-word">Aşkım</span>
+      </div>
+
+      <!-- 11 -->
+      <div class="heart-row">
+        <span class="heart-word">Sinem</span>
+        <span class="heart-word">I Love You</span>
+        <span class="heart-word">Yağız</span>
+      </div>
+
+      <!-- 12 -->
+      <div class="heart-row">
+        <span class="heart-word big">Aşkım</span>
+        <span class="heart-word">Sinem</span>
+      </div>
+
+      <!-- 13 -->
+      <div class="heart-row">
+        <span class="heart-word">Yağız</span>
+        <span class="heart-word">Seni Seviyorum</span>
+      </div>
+
+      <!-- 14 -->
+      <div class="heart-row">
+        <span class="heart-word big">Sinem</span>
+      </div>
+
+    </div>
+
+    <!-- ORTADAKİ BÜYÜK İSİM -->
+    <div class="center-name">
+      Sinem
+    </div>
+
+  </div>
+
+
+  <!-- MESAJ -->
+
   <div class="message-box">
     <div id="message"></div>
   </div>
+
+
+  <!-- ALT -->
+
   <div class="special">
     Sadece Sinem'ime özel ♡
   </div>
+
+
+  <!-- ECG -->
+
   <div class="ecg-wrap">
     <canvas id="ecg"></canvas>
   </div>
+
 </div>
+
+
+<!-- MÜZİK -->
+
 <audio id="music" src="music.mp3" loop></audio>
-<button class="music-btn" id="musicBtn">♫</button>
+
+<button class="music-btn" id="musicBtn">
+  ♫
+</button>
+
+
 <script>
+
 /* =========================
    YILDIZLAR
 ========================= */
-const stars = document.getElementById("stars");
+
+const stars=document.getElementById("stars");
+
 for(let i=0;i<55;i++){
+
   const s=document.createElement("div");
+
   s.className="star";
-  s.style.left=Math.random()*100+"%";
-  s.style.animationDuration=(5+Math.random()*8)+"s";
-  s.style.animationDelay=(Math.random()*8)+"s";
-  const size=1+Math.random()*3;
+
+  s.style.left=
+    Math.random()*100+"%";
+
+  s.style.animationDuration=
+    (5+Math.random()*8)+"s";
+
+  s.style.animationDelay=
+    (Math.random()*8)+"s";
+
+  const size=
+    1+Math.random()*3;
+
   s.style.width=size+"px";
   s.style.height=size+"px";
+
   stars.appendChild(s);
 }
-/* =========================
-   YAZILARDAN KALP
-========================= */
-const canvas=document.getElementById("heartCanvas");
-const ctx=canvas.getContext("2d");
-const words=[
-  "Yağız",
-  "Sinem",
-  "Aşkım",
-  "I Love You",
-  "Yağız",
-  "Sinem",
-  "Aşkım",
-  "Seni Seviyorum"
-];
-let W,H,dpr;
-function resizeCanvas(){
-  const rect=canvas.getBoundingClientRect();
-  dpr=Math.min(window.devicePixelRatio || 1,2);
-  W=rect.width;
-  H=rect.height;
-  canvas.width=W*dpr;
-  canvas.height=H*dpr;
-  ctx.setTransform(dpr,0,0,dpr,0,0);
-}
-window.addEventListener("resize",resizeCanvas);
-resizeCanvas();
-/*
-  Kalp denklemi sadece YAZILARIN nerede
-  duracağını hesaplamak için kullanılıyor.
-  Ekranda hiçbir kalp şekli çizilmiyor.
-  Görünen kalbin tamamı kelimeler.
-*/
-function heartEquation(x,y){
-  return Math.pow(
-    x*x + y*y - 1,
-    3
-  ) - x*x*Math.pow(y,3);
-}
-function drawTextHeart(time){
-  ctx.clearRect(0,0,W,H);
-  const cx=W/2;
-  const cy=H/2+2;
-  const scale=Math.min(W/3.0,H/2.35);
-  /*
-    Satır satır kelime yerleştiriyoruz.
-    Böylece görüntü rastgele nokta bulutu değil,
-    gerçekten yazılardan oluşan bir kalp oluyor.
-  */
-  const rowStep=16;
-  let wordIndex=0;
-  for(let py=-1.15;py<=1.08;py+=rowStep/scale){
-    let intervals=[];
-    let inside=false;
-    let start=0;
-    /*
-      Her satırdaki gerçek kalp genişliğini bul.
-    */
-    for(let px=-1.45;px<=1.45;px+=0.018){
-      const insideHeart=heartEquation(px,py)<=0;
-      if(insideHeart && !inside){
-        start=px;
-        inside=true;
-      }
-      if(!insideHeart && inside){
-        intervals.push([start,px]);
-        inside=false;
-      }
-    }
-    if(inside){
-      intervals.push([start,1.45]);
-    }
-    /*
-      Ortayı boş bırakıyoruz.
-      Böylece büyük "Sinem" net şekilde ayrılıyor.
-    */
-    const centerGapWidth=
-      Math.abs(py)<0.42
-      ? 0.42*(1-Math.abs(py)/0.42)
-      : 0;
-    intervals=intervals.flatMap(([a,b])=>{
-      if(centerGapWidth<=0) return [[a,b]];
-      const gapLeft=-centerGapWidth;
-      const gapRight=centerGapWidth;
-      if(b<=gapLeft || a>=gapRight){
-        return [[a,b]];
-      }
-      const result=[];
-      if(a<gapLeft){
-        result.push([a,gapLeft]);
-      }
-      if(b>gapRight){
-        result.push([gapRight,b]);
-      }
-      return result;
-    });
-    /*
-      Satırdaki boşluklara kelimeleri doldur.
-    */
-    intervals.forEach(([left,right])=>{
-      let x=left;
-      while(x<right){
-        const word=words[wordIndex % words.length];
-        const fontSize=
-          8.5+
-          2.5*
-          (0.5+0.5*Math.sin(
-            time*0.004+
-            wordIndex
-          ));
-        ctx.font=`700 ${fontSize}px Arial`;
-        const width=ctx.measureText(word).width;
-        if(x+width/scale>right){
-          break;
-        }
-        const realX=cx+x*scale;
-        const realY=cy+py*scale;
-        /*
-          Senkron hareket.
-        */
-        const pulse=
-          0.85+
-          0.15*
-          Math.sin(time*0.004);
-        const alpha=
-          0.48+
-          0.35*
-          (0.5+
-          0.5*
-          Math.sin(
-            time*0.003+
-            wordIndex*.7
-          ));
-        ctx.save();
-        ctx.globalAlpha=alpha*pulse;
-        /*
-          Kelimelerin hafifçe canlı hareket etmesi.
-        */
-        const drift=
-          Math.sin(
-            time*0.002+
-            wordIndex
-          )*1.2;
-        ctx.translate(realX,realY+drift);
-        /*
-          Her kelimeyi hafif farklı döndürüyoruz.
-        */
-        ctx.rotate(
-          Math.sin(
-            time*.001+
-            wordIndex
-          )*.025
-        );
-        ctx.fillStyle="#ffffff";
-        ctx.shadowColor="#ff72dc";
-        ctx.shadowBlur=7;
-        ctx.fillText(word,0,0);
-        ctx.restore();
-        x+=(width+7)/scale;
-        wordIndex++;
-      }
-    });
-  }
-  requestAnimationFrame(drawTextHeart);
-}
-requestAnimationFrame(drawTextHeart);
+
+
 /* =========================
    MESAJLAR
 ========================= */
+
 const messages=[
+
 "Mesafeler ne kadar uzun olursa olsun, kalbimin en güzel yerinde hep sen varsın. ❤️",
+
 "Sen benim sadece sevgilim değil, en güzel tesadüfüm, en huzurlu yanım ve en sevdiğim insansın.",
+
 "Yanında olamadığım her an seni biraz daha özlüyorum. Ama biliyorum ki bu mesafe bizi değil, sevgimizi büyütüyor.",
+
 "Bir gün bütün bu uzaklıkların biteceğini ve sana sarılacağım o anı düşünüyorum. O gün geldiğinde seni bırakmayacağım.",
+
 "Seninle konuştuğum her dakika günüm güzelleşiyor. İyi ki hayatımdasın Sinem.",
+
 "Ne kadar uzak olursak olalım, aynı gökyüzünün altında olduğumuzu bilmek bile bana yetiyor.",
+
 "Ben seni sadece güzel günlerde değil, zor günlerde de seçiyorum. Her seferinde yine seni.",
+
 "Yağız'ın kalbinin en güzel yerinde bir isim var: Sinem. ❤️",
+
 "İyi ki varsın aşkım. Seni bugün, yarın ve bundan sonraki bütün günlerde seveceğim."
+
 ];
+
 let messageIndex=0;
+
 const message=document.getElementById("message");
+
+
 function showMessage(){
+
   message.style.opacity=0;
+
   setTimeout(()=>{
+
     message.textContent=
       messages[messageIndex];
+
     message.style.opacity=1;
+
     messageIndex=
       (messageIndex+1)%messages.length;
+
   },500);
 }
+
 showMessage();
+
 setInterval(showMessage,5000);
+
+
 /* =========================
    ECG
 ========================= */
+
 const ecg=document.getElementById("ecg");
+
 const ectx=ecg.getContext("2d");
+
+
 function resizeECG(){
-  const rect=ecg.getBoundingClientRect();
+
+  const rect=
+    ecg.getBoundingClientRect();
+
   const ratio=
     Math.min(
       window.devicePixelRatio||1,
       2
     );
-  ecg.width=rect.width*ratio;
-  ecg.height=rect.height*ratio;
+
+  ecg.width=
+    rect.width*ratio;
+
+  ecg.height=
+    rect.height*ratio;
+
   ectx.setTransform(
-    ratio,0,0,ratio,0,0
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
   );
 }
+
 resizeECG();
-window.addEventListener("resize",resizeECG);
+
+window.addEventListener(
+  "resize",
+  resizeECG
+);
+
+
 let ecgOffset=0;
+
+
 function drawECG(){
+
   const w=ecg.clientWidth;
+
   const h=ecg.clientHeight;
-  ectx.clearRect(0,0,w,h);
+
+  ectx.clearRect(
+    0,
+    0,
+    w,
+    h
+  );
+
   ectx.beginPath();
+
   ectx.lineWidth=2;
-  ectx.strokeStyle="rgba(255,255,255,.85)";
-  ectx.shadowColor="#ff69d9";
+
+  ectx.strokeStyle=
+    "rgba(255,255,255,.85)";
+
+  ectx.shadowColor=
+    "#ff69d9";
+
   ectx.shadowBlur=10;
+
   const center=h/2;
+
+
   for(let x=0;x<w;x++){
-    const pos=(x+ecgOffset)%170;
+
+    const pos=
+      (x+ecgOffset)%170;
+
     let y=center;
+
+
     if(pos>65 && pos<78){
-      y=center-(pos-65)*2.5;
-    }else if(pos>=78 && pos<88){
-      y=center-32+(pos-78)*6.4;
-    }else if(pos>=88 && pos<103){
-      y=center+32-(pos-88)*2.13;
-    }else{
+
+      y=
+        center-
+        (pos-65)*2.5;
+
+    }
+
+    else if(pos>=78 && pos<88){
+
+      y=
+        center-
+        32+
+        (pos-78)*6.4;
+
+    }
+
+    else if(pos>=88 && pos<103){
+
+      y=
+        center+
+        32-
+        (pos-88)*2.13;
+
+    }
+
+    else{
+
       y=center;
+
     }
+
+
     if(x===0){
+
       ectx.moveTo(x,y);
-    }else{
-      ectx.lineTo(x,y);
+
     }
+
+    else{
+
+      ectx.lineTo(x,y);
+
+    }
+
   }
+
+
   ectx.stroke();
+
   ecgOffset+=1.5;
-  requestAnimationFrame(drawECG);
+
+  requestAnimationFrame(
+    drawECG
+  );
 }
+
 drawECG();
+
+
 /* =========================
    MÜZİK
 ========================= */
-const music=document.getElementById("music");
-const musicBtn=document.getElementById("musicBtn");
+
+const music=
+  document.getElementById("music");
+
+const musicBtn=
+  document.getElementById("musicBtn");
+
 let playing=false;
-musicBtn.addEventListener("click",()=>{
-  if(!playing){
-    music.play()
-      .then(()=>{
-        playing=true;
-        musicBtn.textContent="❚❚";
-      })
-      .catch(()=>{});
-  }else{
-    music.pause();
-    playing=false;
-    musicBtn.textContent="♫";
+
+
+musicBtn.addEventListener(
+  "click",
+  ()=>{
+
+    if(!playing){
+
+      music.play()
+        .then(()=>{
+
+          playing=true;
+
+          musicBtn.textContent="❚❚";
+
+        })
+        .catch(()=>{});
+
+    }
+
+    else{
+
+      music.pause();
+
+      playing=false;
+
+      musicBtn.textContent="♫";
+
+    }
+
   }
-});
-/*
-  İlk dokunuşta müziği başlatmayı dene.
-  Tarayıcı izin vermezse sağ alttaki buton çalışır.
-*/
-document.addEventListener("click",function startMusic(){
-  if(!playing){
-    music.play()
-      .then(()=>{
-        playing=true;
-        musicBtn.textContent="❚❚";
-      })
-      .catch(()=>{});
-  }
-  document.removeEventListener(
-    "click",
-    startMusic
-  );
-},{once:true});
+);
+
+
+/* İlk dokunuşta müzik */
+
+document.addEventListener(
+  "click",
+  function startMusic(){
+
+    if(!playing){
+
+      music.play()
+        .then(()=>{
+
+          playing=true;
+
+          musicBtn.textContent="❚❚";
+
+        })
+        .catch(()=>{});
+
+    }
+
+    document.removeEventListener(
+      "click",
+      startMusic
+    );
+
+  },
+  {once:true}
+);
+
 </script>
+
 </body>
 </html>
